@@ -24,7 +24,7 @@ public class AppStatusController {
     @GetMapping("/api/v1/app/status")
     public List<ServerProcessRest> getAllStatuses() {
 
-//        cfg.getApplicationsList().forEach(System.out::println);
+        cfg.getApplicationsList().forEach(System.out::println);
 
         return cfg.getApplicationsList();
     }
