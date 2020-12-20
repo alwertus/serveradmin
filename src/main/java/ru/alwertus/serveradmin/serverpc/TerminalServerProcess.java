@@ -35,7 +35,7 @@ public class TerminalServerProcess extends LinuxTerminal implements IServerProce
      *      or process PID
      */
     public int getPID() {
-        List<String> results = runCommandReadResults("pgrep", findString);
+        List<String> results = runCommandReadResults("pgrep", "-f", findString);
 
         if (results.size() == 0) return 0;
 
