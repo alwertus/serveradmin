@@ -17,7 +17,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)  // везде прописываю доступы при помощи аннотации @PreAuthorize
+@EnableGlobalMethodSecurity(prePostEnabled = true)  // возможность прописывать доступы при помощи аннотации @PreAuthorize
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
@@ -32,7 +32,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()   // механизм защиты от угроз, отключаем
                 .authorizeRequests()
-                .antMatchers("/").permitAll()
+                .antMatchers("/*").permitAll()
+                .antMatchers("/api/v1/app/status").permitAll()
+                .antMatchers("/api/v1/app/action/*").permitAll()
+                .antMatchers("/api/v1/config/reload").permitAll()
 //                .antMatchers(HttpMethod.GET, "/api/**").hasAnyRole(Role.ADMIN.name(), Role.USER.name())   // проверяем доступ по текущим ролям
 //                .antMatchers(HttpMethod.GET, "/api/**").hasAuthority(Permission.DEVELOPERS_READ.getPermission())  // проверяе доступ по текущим разрешениям
 //                .antMatchers(HttpMethod.POST, "/api/**").hasAuthority(Permission.DEVELOPERS_WRITE.getPermission())

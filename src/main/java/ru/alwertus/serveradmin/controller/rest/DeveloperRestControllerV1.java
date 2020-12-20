@@ -1,4 +1,4 @@
-package ru.alwertus.serveradmin.rest;
+package ru.alwertus.serveradmin.controller.rest;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;

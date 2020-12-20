@@ -8,6 +8,7 @@ public class ServeradminApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ServeradminApplication.class, args);
+
     }
 
 }
