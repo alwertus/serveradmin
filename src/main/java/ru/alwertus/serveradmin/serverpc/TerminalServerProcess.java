@@ -70,13 +70,12 @@ public class TerminalServerProcess extends LinuxTerminal implements IServerProce
         boolean addSH = startScript.contains("zzzSHzzz");
 
         String startComand = replaceAllOccurrences(startScript, 0);
-//                startScript.replaceAll("zzzPIDzzz", String.valueOf(getPID()));
-//        startComand = startComand.replaceAll("zzzSHzzz", "");
 
         System.out.println("START: << " + startComand + " >>");
 
         if (startScript.equals(""))
             throw new NullPointerException("Script 'START' not defined");
+//        System.out.println("RUN COMMAND NEXT> " + startComand);
         if (!isExists())
             if (addSH)
                 runCommandSHReadResults(startComand);
@@ -96,6 +95,7 @@ public class TerminalServerProcess extends LinuxTerminal implements IServerProce
             return;
         }
 
+        boolean addSH = startScript.contains("zzzSHzzz");
 
         String stopCommand = replaceAllOccurrences(stopScript, pid);
         System.out.println("STOP: " + stopCommand);
@@ -103,7 +103,10 @@ public class TerminalServerProcess extends LinuxTerminal implements IServerProce
         if (stopScript.equals(""))
             throw new NullPointerException("Script 'STOP' not defined");
         if (isExists())
-            runCommandReadResults(stopCommand);
+            if (addSH)
+                runCommandSHReadResults(stopCommand);
+            else
+                runCommandReadResults(stopCommand);
     }
 
     private String replaceAllOccurrences(String rawString, int pid) {

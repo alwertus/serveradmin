@@ -17,10 +17,14 @@ public class LinuxTerminal {
         List<String> results = new ArrayList<>();
         try {
             Process p = new ProcessBuilder(command).start();
+//            System.out.println("PROCESS: " + p.info());
             results = readResults(p.getInputStream());
         } catch (IOException e) {
             throw new RuntimeException("Error run command: " + e.getMessage());
         }
+//        System.out.println("RESULTS RUN COMMAND BEGIN ----------------------");
+//        results.forEach(System.out::println);
+//        System.out.println("RESULTS RUN COMMAND END ----------------------");
         return results;
     }
 
